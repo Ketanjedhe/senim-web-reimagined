@@ -4,15 +4,10 @@ import {
   MapPin,
   Linkedin,
   Twitter,
-  Facebook,
-  ArrowUp
+  Facebook
 } from "lucide-react";
-import { Button } from "@/components/ui/button";
 
 const Footer = () => {
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
 
   const quickLinks = [
     { name: "Home", href: "#home" },
@@ -42,14 +37,6 @@ const Footer = () => {
 
   return (
     <footer className="bg-foreground text-background relative">
-      {/* Back to Top Button */}
-      <Button
-        onClick={scrollToTop}
-        className="absolute -top-6 left-1/2 transform -translate-x-1/2 w-12 h-12 rounded-full shadow-glow"
-        size="sm"
-      >
-        <ArrowUp className="w-5 h-5" />
-      </Button>
 
       <div className="container mx-auto px-4 pt-16 pb-8">
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
