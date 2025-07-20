@@ -1,8 +1,11 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, CheckCircle } from "lucide-react";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const ProductsSection = () => {
+  const { ref, isVisible } = useScrollAnimation();
+  
   const products = [
     {
       title: "Senim Pusher Centrifuge",
@@ -71,9 +74,9 @@ const ProductsSection = () => {
   ];
 
   return (
-    <section id="products" className="py-20 bg-muted/30">
+    <section ref={ref} id="products" className="py-20 bg-muted/30">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16 animate-fade-in">
+        <div className={`text-center mb-16 transition-all duration-1000 ${isVisible ? 'animate-fade-in' : 'opacity-0 translate-y-10'}`}>
           <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
             Innovative Products
             <span className="block text-primary">Built for Performance</span>
@@ -88,8 +91,10 @@ const ProductsSection = () => {
           {products.map((product, index) => (
             <Card 
               key={index} 
-              className="group hover:shadow-elegant transition-all duration-300 animate-scale-in"
-              style={{ animationDelay: `${index * 0.1}s` }}
+              className={`group hover:shadow-elegant transition-all duration-500 hover:-translate-y-2 hover-scale ${
+                isVisible ? 'animate-scale-in' : 'opacity-0 scale-95'
+              }`}
+              style={{ animationDelay: isVisible ? `${index * 0.2}s` : '0s' }}
             >
               <CardContent className="p-8">
                 <div className="mb-6">
@@ -123,7 +128,7 @@ const ProductsSection = () => {
                   </div>
                 </div>
 
-                <Button variant="outline" className="group/btn border-primary text-primary hover:bg-primary hover:text-primary-foreground">
+                <Button variant="outline" className="group/btn border-primary text-primary hover:bg-primary hover:text-primary-foreground hover-scale transition-all duration-300">
                   View Specifications
                   <ArrowRight className="ml-2 h-4 w-4 group-hover/btn:translate-x-1 transition-transform" />
                 </Button>
@@ -140,7 +145,7 @@ const ProductsSection = () => {
             Need a specialized solution? Our engineering team can design and manufacture 
             custom equipment tailored to your specific requirements.
           </p>
-          <Button size="lg" variant="secondary" className="shadow-elegant">
+          <Button size="lg" variant="secondary" className="shadow-elegant hover-scale transition-all duration-300">
             Request Custom Quote
             <ArrowRight className="ml-2 h-5 w-5" />
           </Button>

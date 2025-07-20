@@ -8,8 +8,11 @@ import {
   ArrowRight,
   CheckCircle 
 } from "lucide-react";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const AboutSection = () => {
+  const { ref, isVisible } = useScrollAnimation();
+  
   const achievements = [
     { icon: Award, value: "25+", label: "Years of Excellence" },
     { icon: Users, value: "100+", label: "Expert Engineers" },
@@ -29,11 +32,11 @@ const AboutSection = () => {
   ];
 
   return (
-    <section id="about" className="py-20 bg-background">
+    <section ref={ref} id="about" className="py-20 bg-background">
       <div className="container mx-auto px-4">
         <div className="grid lg:grid-cols-2 gap-16 items-center mb-20">
           {/* Content */}
-          <div className="animate-fade-in">
+          <div className={`transition-all duration-1000 ${isVisible ? 'animate-fade-in' : 'opacity-0 translate-y-10'}`}>
             <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
               About
               <span className="block text-primary">SENIM Solution LLP</span>
@@ -65,19 +68,19 @@ const AboutSection = () => {
               ))}
             </div>
 
-            <Button size="lg" className="shadow-glow">
+            <Button size="lg" className="shadow-glow hover-scale transition-all duration-300">
               Learn More About Us
               <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
           </div>
 
           {/* Stats Cards */}
-          <div className="grid grid-cols-2 gap-6 animate-scale-in">
+          <div className={`grid grid-cols-2 gap-6 transition-all duration-1000 ${isVisible ? 'animate-scale-in' : 'opacity-0 scale-95'}`}>
             {achievements.map((achievement, index) => (
               <Card 
                 key={index} 
-                className="text-center p-6 hover:shadow-elegant transition-all duration-300 hover:-translate-y-1"
-                style={{ animationDelay: `${index * 0.1}s` }}
+                className="text-center p-6 hover:shadow-elegant transition-all duration-300 hover:-translate-y-1 hover-scale"
+                style={{ animationDelay: isVisible ? `${index * 0.1}s` : '0s' }}
               >
                 <CardContent className="p-0">
                   <div className="w-16 h-16 bg-gradient-primary rounded-2xl flex items-center justify-center mx-auto mb-4">
@@ -121,11 +124,11 @@ const AboutSection = () => {
             and proven engineering solutions.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="shadow-glow">
+            <Button size="lg" className="shadow-glow hover-scale transition-all duration-300">
               Start Your Project
               <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
-            <Button size="lg" variant="outline">
+            <Button size="lg" variant="outline" className="hover-scale transition-all duration-300">
               Download Brochure
             </Button>
           </div>

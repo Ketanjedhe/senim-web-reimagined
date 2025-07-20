@@ -9,8 +9,11 @@ import {
 } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const SolutionsSection = () => {
+  const { ref, isVisible } = useScrollAnimation();
+  
   const solutions = [
     {
       icon: Zap,
@@ -51,9 +54,9 @@ const SolutionsSection = () => {
   ];
 
   return (
-    <section id="solutions" className="py-20 bg-background">
+    <section ref={ref} id="solutions" className="py-20 bg-background">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16 animate-fade-in">
+        <div className={`text-center mb-16 transition-all duration-1000 ${isVisible ? 'animate-fade-in' : 'opacity-0 translate-y-10'}`}>
           <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
             Engineering Excellence
             <span className="block text-primary">Across Industries</span>
@@ -68,8 +71,10 @@ const SolutionsSection = () => {
           {solutions.map((solution, index) => (
             <Card 
               key={index} 
-              className="group hover:shadow-elegant transition-all duration-300 hover:-translate-y-2 animate-scale-in border-border"
-              style={{ animationDelay: `${index * 0.1}s` }}
+              className={`group hover:shadow-elegant transition-all duration-500 hover:-translate-y-2 hover-scale border-border ${
+                isVisible ? 'animate-scale-in' : 'opacity-0 scale-95'
+              }`}
+              style={{ animationDelay: isVisible ? `${index * 0.1}s` : '0s' }}
             >
               <CardContent className="p-8">
                 <div className="mb-6">
@@ -99,7 +104,7 @@ const SolutionsSection = () => {
         </div>
 
         <div className="text-center">
-          <Button size="lg" className="shadow-glow">
+          <Button size="lg" className="shadow-glow hover-scale transition-all duration-300">
             View All Solutions
             <ArrowRight className="ml-2 h-5 w-5" />
           </Button>

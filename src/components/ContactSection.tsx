@@ -13,8 +13,10 @@ import {
   CheckCircle 
 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const ContactSection = () => {
+  const { ref, isVisible } = useScrollAnimation();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -71,9 +73,9 @@ const ContactSection = () => {
   ];
 
   return (
-    <section id="contact" className="py-20 bg-muted/30">
+    <section ref={ref} id="contact" className="py-20 bg-muted/30">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16 animate-fade-in">
+        <div className={`text-center mb-16 transition-all duration-1000 ${isVisible ? 'animate-fade-in' : 'opacity-0 translate-y-10'}`}>
           <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
             Get In Touch
             <span className="block text-primary">Let's Build Together</span>
@@ -86,11 +88,11 @@ const ContactSection = () => {
 
         <div className="grid lg:grid-cols-3 gap-12">
           {/* Contact Information */}
-          <div className="lg:col-span-1 space-y-6 animate-fade-in">
+          <div className={`lg:col-span-1 space-y-6 transition-all duration-1000 ${isVisible ? 'animate-fade-in' : 'opacity-0 translate-x-10'}`}>
             <h3 className="text-2xl font-bold text-foreground mb-6">Contact Information</h3>
             
             {contactInfo.map((info, index) => (
-              <Card key={index} className="hover:shadow-elegant transition-all duration-300">
+              <Card key={index} className="hover:shadow-elegant transition-all duration-300 hover:-translate-y-1 hover-scale">
                 <CardContent className="p-6">
                   <div className="flex items-start">
                     <div className="w-12 h-12 bg-gradient-primary rounded-xl flex items-center justify-center mr-4 flex-shrink-0">
@@ -112,14 +114,14 @@ const ContactSection = () => {
               <p className="text-primary-foreground/90 mb-4">
                 For urgent technical support and emergency services
               </p>
-              <Button variant="secondary" size="sm">
+              <Button variant="secondary" size="sm" className="hover-scale transition-all duration-300">
                 Emergency Hotline
               </Button>
             </div>
           </div>
 
           {/* Contact Form */}
-          <div className="lg:col-span-2 animate-scale-in">
+          <div className={`lg:col-span-2 transition-all duration-1000 ${isVisible ? 'animate-scale-in' : 'opacity-0 scale-95'}`}>
             <Card className="shadow-elegant">
               <CardContent className="p-8">
                 <h3 className="text-2xl font-bold text-foreground mb-6">Send Us a Message</h3>
@@ -196,7 +198,7 @@ const ContactSection = () => {
                     type="submit" 
                     size="lg" 
                     disabled={isSubmitting}
-                    className="w-full shadow-glow"
+                    className="w-full shadow-glow hover-scale transition-all duration-300"
                   >
                     {isSubmitting ? (
                       "Sending..."
