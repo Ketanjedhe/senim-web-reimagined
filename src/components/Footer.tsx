@@ -43,13 +43,11 @@ const Footer = () => {
           {/* Company Info */}
           <div className="lg:col-span-1">
             <div className="flex items-center space-x-2 mb-6">
-              <div className="w-10 h-10 bg-gradient-primary rounded-lg flex items-center justify-center">
-                <span className="text-primary-foreground font-bold text-xl">S</span>
-              </div>
-              <div>
-                <span className="text-2xl font-bold">SENIM</span>
-                <div className="text-sm text-background/80">Solution LLP</div>
-              </div>
+              <img 
+                src="/lovable-uploads/e8c37867-3a5e-4204-8f62-a84288908b86.png" 
+                alt="Senim Solution LLP Logo" 
+                className="h-12 w-auto"
+              />
             </div>
             
             <p className="text-background/80 mb-6 leading-relaxed">
