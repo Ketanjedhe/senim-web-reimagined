@@ -25,13 +25,13 @@ const HeroSection = () => {
               <span className="text-sm font-medium text-primary">Trusted by Industry Leaders</span>
             </div>
             
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-primary-foreground mb-6 leading-tight animate-fade-in [animation-delay:600ms]">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-primary-foreground mb-6 leading-tight animate-fade-in [animation-delay:600ms]">
               Advanced 
               <span className="block text-primary-glow animate-fade-in [animation-delay:900ms]">Engineering</span>
               <span className="block animate-fade-in [animation-delay:1200ms]">Solutions</span>
             </h1>
             
-            <p className="text-xl md:text-2xl text-primary-foreground/90 mb-8 leading-relaxed animate-fade-in [animation-delay:1500ms]">
+            <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-primary-foreground/90 mb-8 leading-relaxed animate-fade-in [animation-delay:1500ms]">
               Leading process technology and engineering excellence in distillation, 
               evaporation, heat transfer, and environmental solutions.
             </p>
@@ -39,35 +39,35 @@ const HeroSection = () => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start animate-fade-in [animation-delay:1800ms]">
               <Button 
                 size="lg" 
-                className="bg-primary hover:bg-primary-glow text-primary-foreground font-semibold px-8 py-4 text-lg shadow-glow hover-scale transition-all duration-300"
+                className="w-full sm:w-auto bg-primary hover:bg-primary-glow text-primary-foreground font-semibold px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg shadow-glow hover-scale transition-all duration-300"
               >
                 Explore Solutions
-                <ArrowRight className="ml-2 h-5 w-5" />
+                <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
               </Button>
               
               <Button 
                 size="lg" 
                 variant="outline" 
-                className="border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10 px-8 py-4 text-lg hover-scale transition-all duration-300"
+                className="w-full sm:w-auto border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10 px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg hover-scale transition-all duration-300"
               >
-                <Play className="mr-2 h-5 w-5" />
+                <Play className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
                 Watch Demo
               </Button>
             </div>
 
             {/* Stats */}
-            <div className="grid grid-cols-3 gap-8 mt-12 pt-8 border-t border-primary-foreground/20 animate-fade-in [animation-delay:2100ms]">
+            <div className="grid grid-cols-3 gap-4 sm:gap-8 mt-8 sm:mt-12 pt-6 sm:pt-8 border-t border-primary-foreground/20 animate-fade-in [animation-delay:2100ms]">
               <div className="text-center lg:text-left">
-                <div className="text-3xl font-bold text-primary-glow">25+</div>
-                <div className="text-sm text-primary-foreground/80">Years Experience</div>
+                <div className="text-2xl sm:text-3xl font-bold text-primary-glow">25+</div>
+                <div className="text-xs sm:text-sm text-primary-foreground/80">Years Experience</div>
               </div>
               <div className="text-center lg:text-left">
-                <div className="text-3xl font-bold text-primary-glow">500+</div>
-                <div className="text-sm text-primary-foreground/80">Projects Delivered</div>
+                <div className="text-2xl sm:text-3xl font-bold text-primary-glow">500+</div>
+                <div className="text-xs sm:text-sm text-primary-foreground/80">Projects Delivered</div>
               </div>
               <div className="text-center lg:text-left">
-                <div className="text-3xl font-bold text-primary-glow">50+</div>
-                <div className="text-sm text-primary-foreground/80">Industries Served</div>
+                <div className="text-2xl sm:text-3xl font-bold text-primary-glow">50+</div>
+                <div className="text-xs sm:text-sm text-primary-foreground/80">Industries Served</div>
               </div>
             </div>
           </div>

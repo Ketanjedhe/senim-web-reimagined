@@ -77,11 +77,11 @@ const ProductsSection = () => {
     <section ref={ref} id="products" className="py-20 bg-muted/30">
       <div className="container mx-auto px-4">
         <div className={`text-center mb-16 transition-all duration-1000 ${isVisible ? 'animate-fade-in' : 'opacity-0 translate-y-10'}`}>
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-6">
             Innovative Products
             <span className="block text-primary">Built for Performance</span>
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+          <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
             Our in-house manufacturing capabilities deliver precision-engineered products 
             that set industry standards for quality and reliability.
           </p>
@@ -98,11 +98,11 @@ const ProductsSection = () => {
             >
               <CardContent className="p-8">
                 <div className="mb-6">
-                  <h3 className="text-2xl font-bold text-foreground mb-4">{product.title}</h3>
-                  <p className="text-muted-foreground text-lg">{product.description}</p>
+                  <h3 className="text-xl sm:text-2xl font-bold text-foreground mb-4">{product.title}</h3>
+                  <p className="text-muted-foreground text-base sm:text-lg">{product.description}</p>
                 </div>
 
-                <div className="grid md:grid-cols-2 gap-6 mb-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
                   <div>
                     <h4 className="font-semibold text-foreground mb-3">Key Features</h4>
                     <div className="space-y-2">
@@ -128,7 +128,7 @@ const ProductsSection = () => {
                   </div>
                 </div>
 
-                <Button variant="outline" className="group/btn border-primary text-primary hover:bg-primary hover:text-primary-foreground hover-scale transition-all duration-300">
+                <Button variant="outline" className="w-full sm:w-auto group/btn border-primary text-primary hover:bg-primary hover:text-primary-foreground hover-scale transition-all duration-300">
                   View Specifications
                   <ArrowRight className="ml-2 h-4 w-4 group-hover/btn:translate-x-1 transition-transform" />
                 </Button>
@@ -137,15 +137,15 @@ const ProductsSection = () => {
           ))}
         </div>
 
-        <div className="bg-gradient-primary rounded-2xl p-8 md:p-12 text-center animate-fade-in">
-          <h3 className="text-3xl font-bold text-primary-foreground mb-4">
+        <div className="bg-gradient-primary rounded-2xl p-6 sm:p-8 md:p-12 text-center animate-fade-in">
+          <h3 className="text-2xl sm:text-3xl font-bold text-primary-foreground mb-4">
             Custom Engineering Solutions
           </h3>
-          <p className="text-xl text-primary-foreground/90 mb-8 max-w-2xl mx-auto">
+          <p className="text-lg sm:text-xl text-primary-foreground/90 mb-8 max-w-2xl mx-auto">
             Need a specialized solution? Our engineering team can design and manufacture 
             custom equipment tailored to your specific requirements.
           </p>
-          <Button size="lg" variant="secondary" className="shadow-elegant hover-scale transition-all duration-300">
+          <Button size="lg" variant="secondary" className="w-full sm:w-auto shadow-elegant hover-scale transition-all duration-300">
             Request Custom Quote
             <ArrowRight className="ml-2 h-5 w-5" />
           </Button>
