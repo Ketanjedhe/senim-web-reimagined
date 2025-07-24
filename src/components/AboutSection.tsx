@@ -1,22 +1,19 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { 
   Target, 
   Award, 
   Users, 
   Globe, 
   ArrowRight,
-  CheckCircle,
-  Eye,
-  Lightbulb,
-  Building2,
-  FileText
+  CheckCircle
 } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import { useNavigate } from "react-router-dom";
 
 const AboutSection = () => {
   const { ref, isVisible } = useScrollAnimation();
+  const navigate = useNavigate();
   
   const achievements = [
     { icon: Award, value: "25+", label: "Years of Excellence" },
@@ -74,126 +71,14 @@ const AboutSection = () => {
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4 mb-8">
-              <Dialog>
-                <DialogTrigger asChild>
-                  <Button size="lg" className="shadow-glow hover-scale transition-all duration-300">
-                    Learn More About Us
-                    <ArrowRight className="ml-2 h-5 w-5" />
-                  </Button>
-                </DialogTrigger>
-                <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
-                  <DialogHeader>
-                    <DialogTitle className="text-2xl font-bold text-primary mb-4">About SENIM Solution LLP</DialogTitle>
-                  </DialogHeader>
-                  
-                  <div className="space-y-8">
-                    {/* Company Details */}
-                    <div>
-                      <h3 className="text-xl font-semibold text-foreground mb-4 flex items-center">
-                        <Building2 className="w-5 h-5 mr-2 text-primary" />
-                        Company Information
-                      </h3>
-                      <div className="bg-muted/50 rounded-lg p-4 space-y-2">
-                        <p className="text-foreground"><strong>GST No:</strong> 27AFAFS7294B1ZW</p>
-                        <p className="text-foreground"><strong>Managing Director:</strong> Pravin Pawane</p>
-                        <p className="text-foreground"><strong>Legal Name:</strong> SENIM Solution LLP</p>
-                      </div>
-                    </div>
-
-                    {/* Vision */}
-                    <div>
-                      <h3 className="text-xl font-semibold text-foreground mb-4 flex items-center">
-                        <Eye className="w-5 h-5 mr-2 text-primary" />
-                        Our Vision
-                      </h3>
-                      <div className="bg-card border border-border rounded-lg p-6">
-                        <p className="text-muted-foreground leading-relaxed">
-                          Senim Solutions and Equipment LLP's vision is to provide engineering and technical 
-                          solutions that are responsive to our clients' needs in an innovative, cost effective, 
-                          professional, quality service manner. We will accomplish this by utilizing our common 
-                          values and in achieving our business objective of having you as a satisfied client.
-                        </p>
-                      </div>
-                    </div>
-
-                    {/* Mission */}
-                    <div>
-                      <h3 className="text-xl font-semibold text-foreground mb-4 flex items-center">
-                        <Lightbulb className="w-5 h-5 mr-2 text-primary" />
-                        Our Mission
-                      </h3>
-                      <div className="bg-card border border-border rounded-lg p-6 space-y-4">
-                        <p className="text-muted-foreground leading-relaxed">
-                          Our aim is to deliver exceptional project management and engineering services 
-                          for suitable growth of human society.
-                        </p>
-                        <p className="text-muted-foreground leading-relaxed">
-                          To be the leading turnkey project designing and execution company, committed 
-                          to quality and timely completion of projects, continuously enhancing value of company.
-                        </p>
-                      </div>
-                    </div>
-
-                    {/* Capabilities */}
-                    <div>
-                      <h3 className="text-xl font-semibold text-foreground mb-4 flex items-center">
-                        <Target className="w-5 h-5 mr-2 text-primary" />
-                        Our Capabilities
-                      </h3>
-                      <div className="grid md:grid-cols-2 gap-4">
-                        {[
-                          "Process Technology",
-                          "Process Engineering", 
-                          "Process Equipments",
-                          "Process Plants",
-                          "Distillation Systems",
-                          "Evaporation Systems",
-                          "Heat Transfer Solutions",
-                          "Mixing & Reaction Systems",
-                          "Environmental Solutions",
-                          "Effluent Treatment",
-                          "Membrane Technologies",
-                          "Green Technologies"
-                        ].map((capability, index) => (
-                          <div key={index} className="flex items-center bg-muted/30 rounded-lg p-3">
-                            <CheckCircle className="w-4 h-4 text-primary mr-2 flex-shrink-0" />
-                            <span className="text-sm text-foreground">{capability}</span>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-
-                    {/* Manufacturing */}
-                    <div>
-                      <h3 className="text-xl font-semibold text-foreground mb-4 flex items-center">
-                        <FileText className="w-5 h-5 mr-2 text-primary" />
-                        Manufacturing Facilities
-                      </h3>
-                      <div className="bg-card border border-border rounded-lg p-6">
-                        <p className="text-muted-foreground leading-relaxed mb-4">
-                          Senim has in-house manufacturing facilities for:
-                        </p>
-                        <ul className="space-y-2">
-                          {[
-                            "Process Equipments",
-                            "Mass Transfer Internals",
-                            "Reactors",
-                            "Agitators & Vessels", 
-                            "Membranes Systems",
-                            "Heat Pumps",
-                            "Turbulator Heat Exchangers"
-                          ].map((item, index) => (
-                            <li key={index} className="flex items-center">
-                              <CheckCircle className="w-4 h-4 text-primary mr-2 flex-shrink-0" />
-                              <span className="text-sm text-foreground">{item}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                </DialogContent>
-              </Dialog>
+              <Button 
+                size="lg" 
+                className="shadow-glow hover-scale transition-all duration-300"
+                onClick={() => navigate('/about')}
+              >
+                Learn More About Us
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
             </div>
           </div>
 

@@ -2,9 +2,13 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, CheckCircle } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import ProductDetailModal from "./ProductDetailModal";
+import { useState } from "react";
 
 const ProductsSection = () => {
   const { ref, isVisible } = useScrollAnimation();
+  const [selectedProduct, setSelectedProduct] = useState<any>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   
   const products = [
     {
@@ -21,7 +25,14 @@ const ProductsSection = () => {
         "Higher wash efficiency",
         "Minimum floor space required",
         "Low maintenance cost"
-      ]
+      ],
+      detailedInfo: {
+        overview: "The Senim Pusher Centrifuge represents the pinnacle of solid-liquid separation technology. Engineered for continuous operation, this centrifuge delivers exceptional performance in crystalline product separation with maximum yield and minimum operational costs. The innovative pusher mechanism ensures gentle handling of crystals while maintaining high throughput rates.",
+        technicalSpecs: ["Basket diameter: 600-2000 mm", "Throughput: 500-15000 kg/hr", "G-force: 100-800", "Motor power: 15-200 kW", "Wash water consumption: 2-8 m³/hr", "Material: SS316L, Hastelloy"],
+        performance: ["Continuous operation 24/7", "Cake moisture: <2%", "Product purity: >99.5%", "Automated wash cycles", "Self-cleaning capability", "Variable speed control"],
+        applications: ["Salt crystallization", "Sugar refining", "Chemical intermediates", "Pharmaceutical APIs", "Specialty chemicals", "Food grade products"],
+        advantages: ["Zero spillage design eliminates product loss", "Counter-current washing ensures maximum purity", "Compact footprint reduces installation space", "Automated operation minimizes labor costs", "Easy maintenance with quick-change components"]
+      }
     },
     {
       title: "Mass Transfer Internals",
@@ -37,7 +48,14 @@ const ProductsSection = () => {
         "Reduced pressure drop",
         "Enhanced separation efficiency",
         "Long service life"
-      ]
+      ],
+      detailedInfo: {
+        overview: "Our mass transfer internals are meticulously designed to maximize separation efficiency in distillation and absorption processes. Using advanced CFD modeling and decades of experience, we create custom internal configurations that optimize vapor-liquid contact while minimizing pressure drop and operational costs.",
+        technicalSpecs: ["Column diameter: 0.3-15 m", "Tray efficiency: 85-98%", "Pressure drop: 3-12 mmHg", "Material thickness: 1.5-6 mm", "Operating temperature: -196°C to 400°C", "Design pressure: Full vacuum to 50 bar"],
+        performance: ["High mass transfer rates", "Uniform liquid distribution", "Excellent turndown ratio", "Anti-fouling design", "Corrosion resistance", "Long operational life"],
+        applications: ["Crude oil distillation", "Gas processing", "Chemical separation", "Solvent recovery", "Air separation", "Specialty distillation"],
+        advantages: ["Custom-engineered for specific applications ensuring optimal performance", "Advanced materials provide superior corrosion resistance", "Modular design enables easy installation and maintenance", "Proven technology with thousands of successful installations worldwide"]
+      }
     },
     {
       title: "Heat Pump Systems",
@@ -53,7 +71,14 @@ const ProductsSection = () => {
         "Reduced carbon footprint",
         "Advanced control systems",
         "Proven technology"
-      ]
+      ],
+      detailedInfo: {
+        overview: "Our industrial heat pump systems revolutionize energy efficiency in heating and cooling applications. By utilizing waste heat recovery and renewable energy sources, these systems significantly reduce operational costs while minimizing environmental impact. Advanced control systems ensure optimal performance across varying load conditions.",
+        technicalSpecs: ["Heating capacity: 50 kW to 10 MW", "COP: 3.0-6.5", "Operating temperature: -40°C to 120°C", "Refrigerants: R134a, R717, R744", "Power supply: 380-6600V", "Control system: PLC with HMI"],
+        performance: ["Variable capacity control", "Automatic defrost cycle", "Remote monitoring capability", "Energy optimization algorithms", "Fault diagnosis system", "Seasonal efficiency >300%"],
+        applications: ["District heating", "Process heating", "Drying applications", "Space conditioning", "Water heating", "Waste heat recovery"],
+        advantages: ["Reduces energy consumption by up to 70% compared to conventional systems", "Environmentally friendly refrigerants minimize global warming potential", "Intelligent controls adapt to varying load conditions automatically", "Low maintenance requirements ensure high availability and reduced lifecycle costs"]
+      }
     },
     {
       title: "Membrane Systems",
@@ -69,7 +94,14 @@ const ProductsSection = () => {
         "Minimal waste generation",
         "Easy cleaning procedures",
         "Modular construction"
-      ]
+      ],
+      detailedInfo: {
+        overview: "Our advanced membrane systems provide highly efficient separation solutions across diverse industrial applications. Utilizing cutting-edge membrane materials and innovative module designs, these systems deliver superior performance in filtration, purification, and concentration processes while maintaining low operational costs and minimal environmental impact.",
+        technicalSpecs: ["Membrane area: 1-10,000 m²", "Operating pressure: 1-100 bar", "Temperature range: 5-95°C", "pH tolerance: 1-14", "Pore size: 0.1-1000 nm", "Recovery rate: 75-98%"],
+        performance: ["High flux rates", "Excellent rejection rates", "Chemical compatibility", "Thermal stability", "Fouling resistance", "Long membrane life"],
+        applications: ["Water treatment", "Pharmaceutical processing", "Food & beverage", "Chemical concentration", "Gas separation", "Biotechnology"],
+        advantages: ["Modular design allows easy scaling and expansion for growing capacity needs", "Advanced membrane materials provide exceptional chemical and thermal stability", "Automated cleaning systems minimize downtime and maintenance requirements", "Energy-efficient operation reduces operational costs by up to 40%"]
+      }
     }
   ];
 
@@ -128,7 +160,14 @@ const ProductsSection = () => {
                   </div>
                 </div>
 
-                <Button variant="outline" className="w-full sm:w-auto group/btn border-primary text-primary hover:bg-primary hover:text-primary-foreground hover-scale transition-all duration-300">
+                <Button 
+                  variant="outline" 
+                  className="w-full sm:w-auto group/btn border-primary text-primary hover:bg-primary hover:text-primary-foreground hover-scale transition-all duration-300"
+                  onClick={() => {
+                    setSelectedProduct(product);
+                    setIsModalOpen(true);
+                  }}
+                >
                   View Specifications
                   <ArrowRight className="ml-2 h-4 w-4 group-hover/btn:translate-x-1 transition-transform" />
                 </Button>
@@ -151,6 +190,12 @@ const ProductsSection = () => {
           </Button>
         </div>
       </div>
+
+      <ProductDetailModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        product={selectedProduct}
+      />
     </section>
   );
 };
