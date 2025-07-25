@@ -2,13 +2,11 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, CheckCircle } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
-import ProductDetailModal from "./ProductDetailModal";
-import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const ProductsSection = () => {
   const { ref, isVisible } = useScrollAnimation();
-  const [selectedProduct, setSelectedProduct] = useState<any>(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const navigate = useNavigate();
   
   const products = [
     {
@@ -26,13 +24,7 @@ const ProductsSection = () => {
         "Minimum floor space required",
         "Low maintenance cost"
       ],
-      detailedInfo: {
-        overview: "The Senim Pusher Centrifuge represents the pinnacle of solid-liquid separation technology. Engineered for continuous operation, this centrifuge delivers exceptional performance in crystalline product separation with maximum yield and minimum operational costs. The innovative pusher mechanism ensures gentle handling of crystals while maintaining high throughput rates.",
-        technicalSpecs: ["Basket diameter: 600-2000 mm", "Throughput: 500-15000 kg/hr", "G-force: 100-800", "Motor power: 15-200 kW", "Wash water consumption: 2-8 m³/hr", "Material: SS316L, Hastelloy"],
-        performance: ["Continuous operation 24/7", "Cake moisture: <2%", "Product purity: >99.5%", "Automated wash cycles", "Self-cleaning capability", "Variable speed control"],
-        applications: ["Salt crystallization", "Sugar refining", "Chemical intermediates", "Pharmaceutical APIs", "Specialty chemicals", "Food grade products"],
-        advantages: ["Zero spillage design eliminates product loss", "Counter-current washing ensures maximum purity", "Compact footprint reduces installation space", "Automated operation minimizes labor costs", "Easy maintenance with quick-change components"]
-      }
+      href: "/products/senim-pusher-centrifuge"
     },
     {
       title: "Mass Transfer Internals",
@@ -49,13 +41,7 @@ const ProductsSection = () => {
         "Enhanced separation efficiency",
         "Long service life"
       ],
-      detailedInfo: {
-        overview: "Our mass transfer internals are meticulously designed to maximize separation efficiency in distillation and absorption processes. Using advanced CFD modeling and decades of experience, we create custom internal configurations that optimize vapor-liquid contact while minimizing pressure drop and operational costs.",
-        technicalSpecs: ["Column diameter: 0.3-15 m", "Tray efficiency: 85-98%", "Pressure drop: 3-12 mmHg", "Material thickness: 1.5-6 mm", "Operating temperature: -196°C to 400°C", "Design pressure: Full vacuum to 50 bar"],
-        performance: ["High mass transfer rates", "Uniform liquid distribution", "Excellent turndown ratio", "Anti-fouling design", "Corrosion resistance", "Long operational life"],
-        applications: ["Crude oil distillation", "Gas processing", "Chemical separation", "Solvent recovery", "Air separation", "Specialty distillation"],
-        advantages: ["Custom-engineered for specific applications ensuring optimal performance", "Advanced materials provide superior corrosion resistance", "Modular design enables easy installation and maintenance", "Proven technology with thousands of successful installations worldwide"]
-      }
+      href: "/products/mass-transfer-internals"
     },
     {
       title: "Heat Pump Systems",
@@ -163,10 +149,7 @@ const ProductsSection = () => {
                 <Button 
                   variant="outline" 
                   className="w-full sm:w-auto group/btn border-primary text-primary hover:bg-primary hover:text-primary-foreground hover-scale transition-all duration-300"
-                  onClick={() => {
-                    setSelectedProduct(product);
-                    setIsModalOpen(true);
-                  }}
+                  onClick={() => navigate(product.href)}
                 >
                   View Specifications
                   <ArrowRight className="ml-2 h-4 w-4 group-hover/btn:translate-x-1 transition-transform" />
@@ -191,11 +174,6 @@ const ProductsSection = () => {
         </div>
       </div>
 
-      <ProductDetailModal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-        product={selectedProduct}
-      />
     </section>
   );
 };

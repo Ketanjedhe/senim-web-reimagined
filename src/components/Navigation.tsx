@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useNavigate } from "react-router-dom";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [hoveredItem, setHoveredItem] = useState<string | null>(null);
+  const navigate = useNavigate();
 
   const navItems = [
     { name: "Home", href: "#home" },
@@ -12,23 +14,25 @@ const Navigation = () => {
       name: "Solutions", 
       href: "#solutions",
       dropdown: [
-        "Process Technology",
-        "Environmental Solutions", 
-        "Heat Transfer Systems",
-        "Distillation & Evaporation"
+        { name: "Process Technology", href: "/solutions/process-technology" },
+        { name: "Environmental Solutions", href: "/solutions/environmental-solutions" },
+        { name: "Heat Transfer Systems", href: "/solutions/heat-transfer-systems" },
+        { name: "Mixing & Reaction", href: "/solutions/mixing-reaction" },
+        { name: "Process Equipment", href: "/solutions/process-equipment" },
+        { name: "Consultancy Services", href: "/solutions/consultancy-services" }
       ]
     },
     { 
       name: "Products", 
       href: "#products",
       dropdown: [
-        "Pusher Centrifuge",
-        "Mass Transfer Internals",
-        "Heat Pumps",
-        "Membrane Systems"
+        { name: "Senim Pusher Centrifuge", href: "/products/senim-pusher-centrifuge" },
+        { name: "Mass Transfer Internals", href: "/products/mass-transfer-internals" },
+        { name: "Heat Pump Systems", href: "/products/heat-pump-systems" },
+        { name: "Membrane Systems", href: "/products/membrane-systems" }
       ]
     },
-    { name: "About", href: "#about" },
+    { name: "About", href: "/about" },
     { name: "Contact", href: "#contact" }
   ];
 
@@ -66,13 +70,13 @@ const Navigation = () => {
                   <div className="absolute top-full left-0 mt-1 w-64 bg-card border border-border rounded-lg shadow-elegant z-50 animate-fade-in">
                     <div className="p-2">
                       {item.dropdown.map((subItem) => (
-                        <a
-                          key={subItem}
-                          href={`#${subItem.toLowerCase().replace(/\s+/g, '-')}`}
-                          className="block px-3 py-2 text-sm text-foreground hover:bg-muted rounded-md transition-colors"
+                        <button
+                          key={subItem.name}
+                          onClick={() => navigate(subItem.href)}
+                          className="block w-full text-left px-3 py-2 text-sm text-foreground hover:bg-muted rounded-md transition-colors"
                         >
-                          {subItem}
-                        </a>
+                          {subItem.name}
+                        </button>
                       ))}
                     </div>
                   </div>
@@ -108,14 +112,16 @@ const Navigation = () => {
                 {item.dropdown && (
                   <div className="ml-4 mt-2 space-y-1">
                     {item.dropdown.map((subItem) => (
-                      <a
-                        key={subItem}
-                        href={`#${subItem.toLowerCase().replace(/\s+/g, '-')}`}
-                        className="block text-sm text-muted-foreground hover:text-primary transition-colors py-1"
-                        onClick={() => setIsOpen(false)}
+                      <button
+                        key={subItem.name}
+                        onClick={() => {
+                          navigate(subItem.href);
+                          setIsOpen(false);
+                        }}
+                        className="block w-full text-left text-sm text-muted-foreground hover:text-primary transition-colors py-1"
                       >
-                        {subItem}
-                      </a>
+                        {subItem.name}
+                      </button>
                     ))}
                   </div>
                 )}
